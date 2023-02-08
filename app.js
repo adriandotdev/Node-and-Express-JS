@@ -62,17 +62,31 @@ app.get('/create', (req, res) => {
 app.get('/blogs/:id', (req, res) => {
 
     Blog.findById(req.params.id)
-        .then(result => {
+    .then(result => {
 
-            res.render('blog', { title: 'Blog', blog: result });
-        })
-        .catch(err => {
+        res.render('blog', { title: 'Blog', blog: result });
+    })
+    .catch(err => {
 
-            res.redirect('/404')
-        })
-
-    
+        res.redirect('/404');
+    })
 })
+
+app.delete('/blogs/:id', (req, res) => {
+
+    console.log("DELETING BLOG");
+
+    Blog.findByIdAndDelete(req.params.id)
+    .then(result => {
+
+        console.log("BLOG DELETED")
+        res.redirect('/blogs');
+    })
+    .catch(err => {
+
+        res.redirect('/404');
+    })
+});
 
 app.use((req, res) => {
 

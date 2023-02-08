@@ -2,6 +2,27 @@
     <p class="text-center h5">Created by Nads Marcelo</p>
     <p class="text-center">Copyright &copy; 2023</p>
 
+    <script>
+        const btnDelete = document.getElementById('btn-delete-blog') || null;
+
+        if (btnDelete !== null && btnDelete !== undefined) {
+
+            btnDelete.addEventListener('click', () => {
+
+                const endPoint = `/blogs/${btnDelete.dataset.blogid}`;
+
+                fetch(endPoint, {
+
+                    method: 'DELETE'
+                })
+                .then(result => {
+                    
+                    window.location.href = '/blogs'
+                })
+                .catch(err => console.log(err))
+            });
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
         integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
         crossorigin="anonymous"></script>
