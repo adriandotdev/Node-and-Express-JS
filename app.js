@@ -21,6 +21,7 @@ mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 // WHILE USE THIS IF YOU WANT SPECIFIED NAME OF FOLDER
 // app.set('views', 'myviews');
 
@@ -86,6 +87,32 @@ app.delete('/blogs/:id', (req, res) => {
 
         res.redirect('/404');
     })
+});
+
+app.get('/blogs/update/:id', (req, res) => {
+
+    Blog.findById(req.params.id)
+    .then(result => {
+
+        res.render('update-blog.ejs', {title: 'Update Blog', blog: result});
+    })
+    .catch(err => {
+        res.redirect('/404');
+    })
+});
+
+app.put('/blogs/update/:id', (req, res) => {
+
+    const blogToUpdate = req.body;
+
+    Blog.findByIdAndUpdate(req.params.id, { title: blogToUpdate.title, snippet: blogToUpdate.snippet, content: blogToUpdate.content })
+        .then((result) => {
+
+            res.json({redirect: '/blogs'})
+        })
+        .catch((err) => {
+            console.log(err)
+        })
 });
 
 app.use((req, res) => {

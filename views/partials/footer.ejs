@@ -4,6 +4,7 @@
 
     <script>
         const btnDelete = document.getElementById('btn-delete-blog') || null;
+        const formUpdateBlog = document.getElementById('form--update-blog') || null;
 
         if (btnDelete !== null && btnDelete !== undefined) {
 
@@ -20,6 +21,37 @@
                     window.location.href = '/blogs'
                 })
                 .catch(err => console.log(err))
+            });
+        }
+
+        if (formUpdateBlog !== null && formUpdateBlog !== undefined) {
+
+            
+            formUpdateBlog.addEventListener('submit', (e) => {
+
+                e.preventDefault();
+
+                const id = formUpdateBlog.dataset.blogid;
+
+                const title = document.getElementById('title').value;
+                const snippet = document.getElementById('snippet').value;
+                const content = document.getElementById('content').value;
+
+                fetch(`/blogs/update/${id}`, {
+
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ id, title, snippet, content })
+                })
+                .then(response => response.json())
+                .then(redirect => {
+                    window.location.href = redirect.redirect;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
             });
         }
     </script>
