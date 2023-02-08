@@ -59,6 +59,21 @@ app.get('/create', (req, res) => {
     res.render('create-blog', {title: 'Create'})
 });
 
+app.get('/blogs/:id', (req, res) => {
+
+    Blog.findById(req.params.id)
+        .then(result => {
+
+            res.render('blog', { title: 'Blog', blog: result });
+        })
+        .catch(err => {
+
+            res.redirect('/404')
+        })
+
+    
+})
+
 app.use((req, res) => {
 
     res.status(404).render('404', {title: 'Site Not Found'});

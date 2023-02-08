@@ -16,3 +16,20 @@ form {
     background: #e4e0e0;
     cursor: pointer;
 }
+
+.blog__container {
+
+    max-width: 60rem;
+    width: 100%;
+}
+
+svg {
+
+    width: 1.5rem;
+    transition: all 200ms;
+}
+
+svg:hover {
+
+    transform: scale(1.3);
+}
