@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('./partials/head.ejs') %>
+<body>
+
+    <%- include('./partials/navbar.ejs')  %> 
+
+    <main class="container py-3">
+        <h1 class="text-center text-lg-start mb-4">Welcome to My Blogs</h1>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 gap-2 justify-content-center justify-content-lg-start px-2">
+            <% if (blogs.length===0) { %>
+                <h1>No Blogs</h1>
+                <% } else { %>
+                <% blogs.forEach(element=> { %>
+                    <div class="card blog col shadow-sm blog">
+                        <div class="card-body px-1 py-3">
+                            <h5 class="card-title h2">
+                                <%= element.title %>
+                            </h5>
+                            <p class="card-text">
+                                <%= element.snippet %>
+                            </p>
+                        </div>
+                    </div>
+                    <% }) %>
+                <% } %>
+        </div>
+        
+    </main>
+    
+    <%- include('./partials/footer.ejs') %>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+        integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF"
+        crossorigin="anonymous"></script>
+</body>
+</html>

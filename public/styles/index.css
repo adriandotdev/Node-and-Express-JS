@@ -1,0 +1,18 @@
+.blog {
+
+    max-width: 20rem;
+}
+
+form {
+    max-width: 35rem;
+    width: 100%;
+}
+
+.blog {
+    transition: all 300ms;
+}
+
+.blog:hover {
+    background: #e4e0e0;
+    cursor: pointer;
+}
