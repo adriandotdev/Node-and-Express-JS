@@ -2,11 +2,12 @@ const express = require('express');
 const path = require('path');
 const mongoose = require('mongoose');
 const Blog = require('./models/blog');
+const test = require('dotenv').config();
 
 const app = express();
 
 // Connection URI
-const dbURI = 'mongodb+srv://Lauriano_112300:lauriano_112300-expressjs@cluster0.2j2v3.mongodb.net/express-practice?retryWrites=true&w=majority';
+const dbURI = `mongodb+srv://${test.parsed.USERNAME}:${test.parsed.PASSWORD}@cluster0.2j2v3.mongodb.net/${test.parsed.DB_NAME}?retryWrites=true&w=majority`;
 
 // Connect to the database
 mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
