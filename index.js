@@ -7,13 +7,13 @@ const test = require('dotenv').config();
 const app = express();
 
 // Connection URI
-const dbURI = `mongodb+srv://${test.parsed.USERNAME}:${test.parsed.PASSWORD}@cluster0.2j2v3.mongodb.net/${test.parsed.DB_NAME}?retryWrites=true&w=majority`;
+// const dbURI = `mongodb+srv://${test.parsed.USERNAME}:${test.parsed.PASSWORD}@cluster0.2j2v3.mongodb.net/${test.parsed.DB_NAME}?retryWrites=true&w=majority`;
 
 // Connect to the database
-mongoose.connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(test.parsed.MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => {
         console.log('connected to db');
-        app.listen(3001, () => console.log("Express server listening to port 3001"));
+        app.listen(process.env.PORT || 3001, () => console.log("Express server listening to port 3001"));
     })
     .catch(err => console.log(err));
 // register view engine
