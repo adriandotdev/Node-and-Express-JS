@@ -10,7 +10,7 @@ const app = express();
 // const dbURI = `mongodb+srv://${test.parsed.USERNAME}:${test.parsed.PASSWORD}@cluster0.2j2v3.mongodb.net/${test.parsed.DB_NAME}?retryWrites=true&w=majority`;
 
 // Connect to the database
-mongoose.connect(test.parsed.MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose.connect(process.env.MONGO_DB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(result => {
         console.log('connected to db');
         app.listen(process.env.PORT || 3001, () => console.log("Express server listening to port 3001"));
